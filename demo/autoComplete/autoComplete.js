@@ -227,6 +227,7 @@
                 xhr.onreadystatechange = function () {
                     console.log(this.readyState);
                     console.log(this.status);
+                    console.log(this.responseText);
                     if (this.readyState == 4 && this.status == 200) {
                         console.log(123);
                         fn.call(this, this.responseText);
