@@ -53,7 +53,6 @@
 
             //判断如果传入了url,没有传入data数据，就ajax获取数据，否则使用data取数据
             if (this.sUrl !== '' && this.aData.length === 0) {
-                console.log(111);
                 var that = this;
                 this.util.fnGet(this.sUrl, function (data) {
                     //console.log(eval(data));
