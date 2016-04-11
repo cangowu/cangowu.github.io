@@ -247,6 +247,7 @@
                 document.getElementsByTagName('head')[0].appendChild(script);
 
                 function person(data) {
+                    alert(123);
                     console.log(data);
                 }
             }
