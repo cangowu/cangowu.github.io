@@ -242,7 +242,7 @@
             fnGetJSON: function (url, params, callbackFuncName, callback) {
                 alert(123);
                 var paramsUrl = "",
-                    jsonp = this.getQueryString(url)[callbackFuncName];
+                    jsonp = this.fnGetQueryString(url)[callbackFuncName];
                 for (var key in params) {
                     paramsUrl += "&" + key + "=" + encodeURIComponent(params[key]);
                 }
@@ -256,6 +256,7 @@
                     if (head) {
                         head.removeChild(script);
                     }
+                    console.log(data);
                     callback(data);
                 };
                 var head = document.getElementsByTagName('head')[0];
@@ -265,7 +266,7 @@
                 head.appendChild(script);
                 return true;
             },
-            getQueryString: function (url) {
+            fnGetQueryString: function (url) {
                 var result = {}, queryString = (url && url.indexOf("?") != -1 && url.split("?")[1]) || location.search.substring(1),
                     re = /([^&=]+)=([^&]*)/g, m;
                 while (m = re.exec(queryString)) {
