@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>说明</h1>
+<p>
+    1、字母里面输入a/b/c/d进行测试
+    2、姓名里面输入张三/李四/王五进行测试
+</p>
+
+<div>
+    字母：<input type="text" id="txtTest">
+</div>
+<br>
+<div>
+    姓名：<input type="text" id="txtTest1">
+</div>
+
+<script src="autoComplete.js"></script>
+<script>
+
+    window.onload = function () {
+        var option = {
+            id: 'txtTest', //控件id
+            data: [{
+                "id": "1",
+                "name": "aaaaa"
+            }, {
+                "id": "2",
+                "name": "bbbbb"
+            }, {
+                "id": "3",
+                "name": "ccccc"
+            }, {
+                "id": "4",
+                "name": "ddddd"
+            }],
+            paraName: 'name',
+            textFiled: 'name', //显示的文字的属性名
+            valueFiled: 'id', //获取value的属性名
+            select: function (val, text) {
+                alert(val + '' + text);
+            } //选择选项时触发的事件
+        };
+        var option1 = {
+            id: 'txtTest1', //控件id
+            url: 'data.json', //数据
+            paraName: 'name',
+            textFiled: 'name', //显示的文字的属性名
+            valueFiled: 'id', //获取value的属性名
+            select: function (val, text) {
+                alert(val + '' + text);
+            } //选择选项时触发的事件
+        };
+        AutoComplete(option, option1);
+
+    }
+
+</script>
+</body>
+</html>
