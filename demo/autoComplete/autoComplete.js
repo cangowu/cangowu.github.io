@@ -214,10 +214,8 @@
                 var xhr = null;
                 try {
                     if (window.XMLHttpRequest) {
-                        console.log('aaaa');
                         xhr = new XMLHttpRequest();
                     } else if (Window.ActiveXObject) {
-
                         xhr = new ActiveXObject("Msxml2.Xmlhttp");
                     }
                 } catch (e) {
@@ -227,7 +225,7 @@
                 xhr.onreadystatechange = function () {
                     console.log(this.readyState);
                     console.log(this.status);
-                    console.log(this.responseText);
+                    console.log(this.statusText);
                     if (this.readyState == 4 && this.status == 200) {
                         console.log(123);
                         fn.call(this, this.responseText);
