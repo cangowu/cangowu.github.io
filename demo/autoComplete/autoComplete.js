@@ -240,6 +240,7 @@
                 xhr.send();
             },
             fnGetJSON: function (url, params, callbackFuncName, callback) {
+                alert(123);
                 var paramsUrl = "",
                     jsonp = this.getQueryString(url)[callbackFuncName];
                 for (var key in params) {
