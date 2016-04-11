@@ -61,6 +61,7 @@
 
 
                 this.util.fnGetJSON(this.sUrl, {}, "callback", function (data) {
+                    console.log(data);
                     that.aData = eval(data);
                 });
             }
