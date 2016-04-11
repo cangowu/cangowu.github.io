@@ -240,10 +240,8 @@
                 xhr.send();
             },
             fnGetJSON: function (url, params, callbackFuncName, callback) {
-                alert(123);
                 var paramsUrl = "",
                     jsonp = this.fnGetQueryString(url)[callbackFuncName];
-                console.log(jsonp);
                 for (var key in params) {
                     paramsUrl += "&" + key + "=" + encodeURIComponent(params[key]);
                 }
@@ -265,6 +263,7 @@
                 var script = document.createElement('script');
                 script.charset = "UTF-8";
                 script.src = url;
+                script.onload = window[jsonp];
                 head.appendChild(script);
                 return true;
             },
