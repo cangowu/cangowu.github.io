@@ -243,11 +243,13 @@
                 alert(123);
                 var paramsUrl = "",
                     jsonp = this.fnGetQueryString(url)[callbackFuncName];
+                console.log(jsonp);
                 for (var key in params) {
                     paramsUrl += "&" + key + "=" + encodeURIComponent(params[key]);
                 }
                 url += paramsUrl;
                 window[jsonp] = function (data) {
+                    alert(1);
                     window[jsonp] = undefined;
                     try {
                         delete window[jsonp];
