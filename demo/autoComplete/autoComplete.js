@@ -223,11 +223,7 @@
                     xhr = new ActiveXObject('Microsoft.Xmlhttp');
                 }
                 xhr.onreadystatechange = function () {
-                    console.log(this.readyState);
-                    console.log(this.status);
-                    console.log(this.statusText);
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log(123);
                         fn.call(this, this.responseText);
                     } else {
                         setTimeout(function () {
@@ -237,7 +233,16 @@
                 };
                 xhr.open('get', url, true);
                 xhr.send();
-            }
+
+                this.fnJsonp(url);
+            },
+            fnJsonp:function(url){
+                         // 创建script标签，设置其属性
+                         var script = document.createElement('script');
+                         script.setAttribute('src', url);
+                         // 把script标签加入head，此时调用开始
+                         console.log(script);
+                     }
         }
     }
 
