@@ -211,7 +211,10 @@
                 }
             },
             fnGet: function (url, fn, timeout) {
-                this.fnJsonp(url);
+                console.log(11111111);
+                this.getJSON(url, {}, "callback", function (data) {
+                    console.log(data);
+                });
                 var xhr = null;
                 try {
                     if (window.XMLHttpRequest) {
@@ -224,9 +227,6 @@
                     xhr = new ActiveXObject('Microsoft.Xmlhttp');
                 }
                 xhr.onreadystatechange = function () {
-                    console.log(this.readyState);
-                    console.log(this.status);
-                    console.log(this.statusText);
                     if (this.readyState == 4 && this.status == 200) {
                         console.log(123);
                         fn.call(this, this.responseText);
@@ -239,18 +239,38 @@
                 xhr.open('get', url, true);
                 xhr.send();
             },
-            fnJsonp: function (url) {
-                // 创建script标签，设置其属性
-                var script = document.createElement('script');
-                script.setAttribute('src', url);
-                script.onload=person;
-                // 把script标签加入head，此时调用开始
-                document.getElementsByTagName('head')[0].appendChild(script);
-
-                function person(data){
-                    alert(123);
-                    console.log(data);
+            getJSON: function (url, params, callbackFuncName, callback) {
+                var paramsUrl = "",
+                    jsonp = this.getQueryString(url)[callbackFuncName];
+                for (var key in params) {
+                    paramsUrl += "&" + key + "=" + encodeURIComponent(params[key]);
                 }
+                url += paramsUrl;
+                window[jsonp] = function (data) {
+                    window[jsonp] = undefined;
+                    try {
+                        delete window[jsonp];
+                    } catch (e) {
+                    }
+                    if (head) {
+                        head.removeChild(script);
+                    }
+                    callback(data);
+                };
+                var head = document.getElementsByTagName('head')[0];
+                var script = document.createElement('script');
+                script.charset = "UTF-8";
+                script.src = url;
+                head.appendChild(script);
+                return true;
+            },
+            getQueryString: function (url) {
+                var result = {}, queryString = (url && url.indexOf("?") != -1 && url.split("?")[1]) || location.search.substring(1),
+                    re = /([^&=]+)=([^&]*)/g, m;
+                while (m = re.exec(queryString)) {
+                    result[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                }
+                return result;
             }
         }
     }
