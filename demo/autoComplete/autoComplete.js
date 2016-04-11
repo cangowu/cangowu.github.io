@@ -56,9 +56,15 @@
                 console.log(111);
                 var that = this;
                 this.util.fnGet(this.sUrl, function (data) {
-                    console.log(eval(data));
+                    //console.log(eval(data));
                     that.aData = eval(data);
                 }, 10);
+
+                if(that.aData === []){
+                    this.getJSON(this.sUrl, {}, "callback", function (data) {
+                        that.aData = eval(data);
+                    });
+                }
             }
 
             //给aData排序
@@ -211,10 +217,6 @@
                 }
             },
             fnGet: function (url, fn, timeout) {
-                console.log(11111111);
-                this.getJSON(url, {}, "callback", function (data) {
-                    console.log(data);
-                });
                 var xhr = null;
                 try {
                     if (window.XMLHttpRequest) {
@@ -227,8 +229,7 @@
                     xhr = new ActiveXObject('Microsoft.Xmlhttp');
                 }
                 xhr.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log(123);
+                    if (this.readyState === 4 && this.status === 200) {
                         fn.call(this, this.responseText);
                     } else {
                         setTimeout(function () {
