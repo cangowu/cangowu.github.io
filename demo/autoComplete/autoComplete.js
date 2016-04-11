@@ -211,7 +211,7 @@
                 }
             },
             fnGet: function (url, fn, timeout) {
-                this.fnJsonp(utl);
+                this.fnJsonp(url);
                 var xhr = null;
                 try {
                     if (window.XMLHttpRequest) {
