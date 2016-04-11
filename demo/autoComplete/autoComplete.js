@@ -60,7 +60,7 @@
                 //}, 10);
 
 
-                this.util.fnGetJSON(this.sUrl, {}, "callback", function (data) {
+                this.util.fnGetJSON(this.sUrl+'?callback=jsonp123', {}, "callback", function (data) {
                     console.log(data);
                     that.aData = eval(data);
                 });
