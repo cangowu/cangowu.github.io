@@ -60,7 +60,7 @@
                 //}, 10);
 
 
-                this.getJSON(this.sUrl, {}, "callback", function (data) {
+                this.util.fnGetJSON(this.sUrl, {}, "callback", function (data) {
                     that.aData = eval(data);
                 });
             }
@@ -238,7 +238,7 @@
                 xhr.open('get', url, true);
                 xhr.send();
             },
-            getJSON: function (url, params, callbackFuncName, callback) {
+            fnGetJSON: function (url, params, callbackFuncName, callback) {
                 var paramsUrl = "",
                     jsonp = this.getQueryString(url)[callbackFuncName];
                 for (var key in params) {
