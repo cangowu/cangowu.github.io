@@ -52,8 +52,6 @@
             this.sDivId = this.sId + new Date().getTime();//加载选项额divid
 
             //判断如果传入了url,没有传入data数据，就ajax获取数据，否则使用data取数据
-            console.log(this.sUrl);
-            console.log(this.aData.length);
             if (this.sUrl !== '' && this.aData.length === 0) {
                 console.log(111);
                 var that = this;
@@ -216,6 +214,7 @@
                 var xhr = null;
                 try {
                     if (window.XMLHttpRequest) {
+                        console.log('aaaa');
                         xhr = new XMLHttpRequest();
                     } else if (Window.ActiveXObject) {
 
@@ -226,7 +225,10 @@
                     xhr = new ActiveXObject('Microsoft.Xmlhttp');
                 }
                 xhr.onreadystatechange = function () {
+                    console.log(this.readyState);
+                    console.log(this.status);
                     if (this.readyState == 4 && this.status == 200) {
+                        console.log(123);
                         fn.call(this, this.responseText);
                     } else {
                         setTimeout(function () {
