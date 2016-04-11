@@ -62,18 +62,6 @@
 
     }
 
-
-    // 得到航班信息查询结果后的回调函数
-    var flightHandler = function(data){
-        alert(data);
-    };
-    // 动态添加链接服务器js文件的script。
-    // 在url地址中传递了一个code参数匹配JSON数据中的某个key，callback参数则告诉服务器：本地回调函数名为callFuncName。
-    var url = "data.json?callback=flightHandler";
-    var script = document.createElement('script');
-    script.setAttribute('src', url);
-    // 将script元素在网页加载时插入head头部
-    document.getElementsByTagName('head')[0].appendChild(script);
 </script>
 
 
