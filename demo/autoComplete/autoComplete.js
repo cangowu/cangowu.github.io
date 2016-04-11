@@ -239,19 +239,23 @@
                 xhr.open('get', url, true);
                 xhr.send();
             },
-            fnJsonp:function(url){
-                         // 创建script标签，设置其属性
-                         var script = document.createElement('script');
-                         script.setAttribute('src', url);
-                         // 把script标签加入head，此时调用开始
-                         document.getElementsByTagName('head')[0].appendChild(script);
-                     }
+            fnJsonp: function (url) {
+                // 创建script标签，设置其属性
+                var script = document.createElement('script');
+                script.setAttribute('src', url + '?callback=person');
+                // 把script标签加入head，此时调用开始
+                document.getElementsByTagName('head')[0].appendChild(script);
+
+                function person(data) {
+                    console.log(data);
+                }
+            }
         }
     }
 
     window.AutoComplete = function (option) {
         var aOption = Array.prototype.slice.call(arguments);
-        for(var i=0;i<aOption.length;i++){
+        for (var i = 0; i < aOption.length; i++) {
             var autoComplete = new AutoComplete();
             autoComplete.fnInit(aOption[i]);
             autoComplete.fnRender();
