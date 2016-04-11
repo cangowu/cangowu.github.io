@@ -247,7 +247,6 @@
                 }
                 url += paramsUrl;
                 window[jsonp] = function (data) {
-                    alert(1);
                     window[jsonp] = undefined;
                     try {
                         delete window[jsonp];
@@ -256,14 +255,12 @@
                     if (head) {
                         head.removeChild(script);
                     }
-                    console.log(data);
                     callback(data);
                 };
                 var head = document.getElementsByTagName('head')[0];
                 var script = document.createElement('script');
                 script.charset = "UTF-8";
                 script.src = url;
-                script.onload = window[jsonp];
                 head.appendChild(script);
                 return true;
             },
